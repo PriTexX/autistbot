@@ -249,5 +249,5 @@ async def bibametr(ctx, member: discord.Member = None):
                 f'{member.mention} половой гигант, а его бибу можно заметить с космоса. Всё-таки целых {biba}см')
 
 
-token='NzM0MzM5ODYyOTQ5NTI3NjQz.XxQRVQ.koU32qi8RwgU2L4wgcG97hQIWf0'
+token=os.environ.get("BOT_TOKEN")
 client.run(token)

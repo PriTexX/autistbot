@@ -1,0 +1,1 @@
+worker: python discordbot2.0.py

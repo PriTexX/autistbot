@@ -54,6 +54,7 @@ async def on_member_join(member):
 
 
 @client.command()
+@commands.has_permission(administrator=True)
 async def show(ctx):
     cursor.execute("SELECT * FROM info")
     all=cursor.fetchall()
@@ -81,7 +82,10 @@ async def level(ctx,member:discord.Member=None):
 async def lvlup(ctx, member:discord.Member, level):
     if ctx.author.id!=229033111197843456:
         ctx.send('Писька не выросла')
-        ctx.author.move_to(None)
+        try:
+            ctx.author.move_to(None)
+        except:
+            pass
     else:
         sql="""UPDATE info SET level={0} WHERE id={1}""".format(level,member.id)
         cursor.execute(sql)
@@ -180,21 +184,27 @@ async def kick(ctx,member:discord.Member):
     if levels[ctx.author.id]<4:
         await ctx.send("Хуй тебе")
     else:
-        channel=client.get_channel(681414780351021090)
-        await member.kick()
-        await ctx.send(f'{ctx.author} выпнул бомжа {member.mention}')
-        await channel.send(f'{ctx.author.mention} kicked {member.mention}')
+        if levels[member.id]>=5:
+            await ctx.send('Неа, хуй там плавал')
+        else:
+            channel=client.get_channel(681414780351021090)
+            await member.kick()
+            await ctx.send(f'{ctx.author} выпнул бомжа {member.mention}')
+            await channel.send(f'{ctx.author.mention} kicked {member.mention}')
 
 
 @client.command()
 async def ban(ctx,member:discord.Member,reason='За кривой базар'):
-    if levels[ctx.author.id]<5:
+    if levels[ctx.author.id] < 5:
         await ctx.send("Хуй тебе")
     else:
-        channel = client.get_channel(681414780351021090)
-        await member.ban(reason=reason)
-        await ctx.send(f'{ctx.author.mention} закрыл доступ в петушатню {member.mention} {reason}')
-        await channel.send(f'{ctx.author.mention} has banned {member.mention} for {reason}')
+        if levels[member.id] >= 5:
+            await ctx.send('Неа, хуй там плавал')
+        else:   
+            channel = client.get_channel(681414780351021090)
+            await member.ban(reason=reason)
+            await ctx.send(f'{ctx.author.mention} закрыл доступ в петушатню {member.mention} {reason}')
+            await channel.send(f'{ctx.author.mention} has banned {member.mention} for {reason}')
 
 
 @client.command()

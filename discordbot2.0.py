@@ -54,7 +54,6 @@ async def on_member_join(member):
 
 
 @client.command()
-@commands.has_permission(administrator=True)
 async def show(ctx):
     cursor.execute("SELECT * FROM info")
     all=cursor.fetchall()

@@ -139,12 +139,15 @@ async def clear(ctx,amount=2):
 
 @client.command()
 async def spam(ctx,member:discord.Member,amount=5,*,message='Тук-Тук'):
-    if levels[ctx.author.id]<4:
-        await ctx.send("Хуй тебе")
+    if amount>200:
+        pass
     else:
-        for i in range(amount):
-            await member.send(str(message))
-            time.sleep(0.1)
+        if levels[ctx.author.id]<4:
+            await ctx.send("Хуй тебе")
+        else:
+            for i in range(amount):
+                await member.send(str(message))
+                time.sleep(0.1)
 
 
 @client.command()

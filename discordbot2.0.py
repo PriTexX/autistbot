@@ -188,8 +188,8 @@ async def kick(ctx,member:discord.Member):
         if levels[member.id]>=5:
             await ctx.send('Неа, хуй там плавал')
         else:
-            channel=client.get_channel(681414780351021090)
             await member.kick()
+            channel=client.get_channel(681414780351021090)
             await ctx.send(f'{ctx.author} выпнул бомжа {member.mention}')
             await channel.send(f'{ctx.author.mention} kicked {member.mention}')
 

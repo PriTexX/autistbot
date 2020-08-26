@@ -40,13 +40,12 @@ async def on_member_join(member):
     channel = client.get_channel(690908836391026728)
     role = discord.utils.get(member.guild.roles, id=681396936011808791)
     await member.add_roles(role)
+    await channel.send(f'{member.mention} залетел в бомжатник')
     sql="""INSERT INTO info VALUES (?,?,?)"""
-    user_info=[(1,f'{member.display_name}',f'{member.id}')]
+    user_info=(1,f'{member.display_name}',f'{member.id}')
     cursor.execute(sql,user_info)
     conn.commit()
     levels[member.id]=1
-    await channel.send(f'{member.mention} залетел в бомжатник')
-
 
 
 # -------COMANDS-------

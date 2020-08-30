@@ -25,9 +25,9 @@ async def on_ready():
     print("Done")
 
     
-@bot.event
+@client.event
 async  def on_command_error(ctx,error):
-    error_channel = bot.get_channel(683559787203788896)
+    error_channel = client.get_channel(683559787203788896)
     await error_channel.send(f'{ctx.author.mention} caused "{error}"')
     if isinstance(error, commands.CommandNotFound):
         await ctx.send('Шо за хуйню ты написал? Нет такой команды')

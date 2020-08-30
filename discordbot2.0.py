@@ -67,16 +67,7 @@ async def show(ctx):
     cursor.execute("SELECT * FROM info")
     all=cursor.fetchall()
     await ctx.send(all)
-@client.command()
-async def auth(ctx):
-    if ctx.author.id!=229033111197843456:
-        pass
-    else:
-        member_list=[]
-        for member in ctx.author.guild.members:
-            member_list.append((3,member.display_name,member.id))
-        cursor.executemany("""INSERT INTO info VALUES(?,?,?)""",member_list)
-        conn.commit()
+
 
 @client.command()
 async def level(ctx,member:discord.Member=None):
@@ -101,9 +92,7 @@ async def lvlup(ctx, member:discord.Member, level):
         levels[member.id]=level
         await ctx.send(f'Уровень {member.mention} был изменён на {level}')
 
-@client.command()
-async def ggg(ctx):
-    await ctx.send(f"{type(levels[ctx.author.id])},type(4)")
+
 @client.command()
 async def changenick(ctx,member:discord.Member,nick):
     if int(levels[ctx.author.id])<4:

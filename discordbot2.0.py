@@ -102,6 +102,9 @@ async def lvlup(ctx, member:discord.Member, level):
         await ctx.send(f'Уровень {member.mention} был повышен до {level}')
 
 @client.command()
+async def ggg(ctx):
+    await ctx.send(f"{type(levels[ctx.author.id])},type(4)")
+@client.command()
 async def changenick(ctx,member:discord.Member,nick):
     if int(levels[ctx.author.id])<4:
         await ctx.send("Хуй тебе")

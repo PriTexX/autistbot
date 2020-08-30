@@ -103,7 +103,7 @@ async def lvlup(ctx, member:discord.Member, level):
 
 @client.command()
 async def changenick(ctx,member:discord.Member,nick):
-    if levels[ctx.author.id]<4:
+    if int(levels[ctx.author.id])<4:
         await ctx.send("Хуй тебе")
     else:
         sql="""UPDATE info SET nickname=? WHERE id=?"""

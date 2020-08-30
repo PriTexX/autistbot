@@ -24,6 +24,16 @@ async def on_ready():
         levels[user[0]]=user[1]
     print("Done")
 
+    
+@bot.event
+async  def on_command_error(ctx,error):
+    error_channel = bot.get_channel(683559787203788896)
+    await error_channel.send(f'{ctx.author.mention} caused "{error}"')
+    if isinstance(error, commands.CommandNotFound):
+        await ctx.send('Шо за хуйню ты написал? Нет такой команды')
+    elif isinstance(error,commands.BadArgument):
+        await ctx.send('Ты где-то проебался с цифрами')
+
 
 @client.event
 async def on_member_update(before,after):

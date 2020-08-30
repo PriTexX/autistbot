@@ -99,7 +99,7 @@ async def lvlup(ctx, member:discord.Member, level):
         cursor.execute(sql)
         conn.commit()
         levels[member.id]=level
-        await ctx.send(f'Уровень {member.mention} был повышен до {level}')
+        await ctx.send(f'Уровень {member.mention} был изменён на {level}')
 
 @client.command()
 async def ggg(ctx):

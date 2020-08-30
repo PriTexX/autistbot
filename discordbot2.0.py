@@ -88,7 +88,6 @@ async def lvlup(ctx, member:discord.Member, level):
     else:
         sql="""UPDATE info SET level={0} WHERE id={1}""".format(level,member.id)
         cursor.execute(sql)
-        cursor.commit()
         conn.commit()
         levels[member.id]=level
         await ctx.send(f'Уровень {member.mention} был изменён на {level}')
@@ -102,7 +101,6 @@ async def changenick(ctx,member:discord.Member,nick):
         sql="""UPDATE info SET nickname=? WHERE id=?"""
         params=(str(nick),int(member.id))
         cursor.execute(sql,params)
-        cursor.commit()
         conn.commit()
         await member.edit(nick=str(nick))
 

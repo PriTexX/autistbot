@@ -107,10 +107,10 @@ async def changenick(ctx,member:discord.Member,nick):
         await ctx.send("Хуй тебе")
     else:
         sql="""UPDATE info SET nickname=? WHERE id=?"""
-        params=(str(nick),member.id)
+        params=(str(nick),int(member.id))
         cursor.execute(sql,params)
         conn.commit()
-        await member.edit(nick=nick)
+        await member.edit(nick=str(nick))
 
 @client.command()
 async def nahui(ctx,member:discord.Member,duration=5):

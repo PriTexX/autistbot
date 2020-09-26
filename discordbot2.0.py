@@ -35,15 +35,6 @@ async  def on_command_error(ctx,error):
         await ctx.send('Ты где-то проебался с цифрами')
 
 
-@client.event
-async def on_member_update(before,after):
-    User_id = after.id
-    cursor.execute("SELECT nickname FROM info WHERE id=?", [(User_id)])
-    nick = cursor.fetchone()
-    if after.display_name==nick[0]:
-        pass
-    else:
-        await after.edit(nick=nick[0])
 
 @client.event
 async def on_member_join(member):
